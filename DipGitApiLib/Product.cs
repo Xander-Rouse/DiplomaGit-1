@@ -16,9 +16,9 @@ namespace DipGitApiLib {
         /// Sums the qty of all items in ProductList together
         /// </summary>
         /// <returns></returns>
-        public int GetTotalQtyProducts() {
+        public int GetTotalQtyProducts(int Qty) {
             int RunningTotal = 0;
-                foreach (Product in ProductList) {
+                for(int i = 0; i < ProductList.Count; i++) {
                     RunningTotal = RunningTotal + Qty;
                 }
                 return RunningTotal;
@@ -29,9 +29,10 @@ namespace DipGitApiLib {
         /// Gets the total cost of inventory, that is the sum of the cost of all items 
         /// </summary>
         /// <returns></returns>
-        public int GetTotalValueProducts() {
+        public int GetTotalValueProducts(int Qty, int Price) {
+
             int RunningTotal = 0;
-            foreach (Product in ProductList) {
+            for(int i = 0; i < ProductList.Count; i++) {
                 RunningTotal = (Qty * Price) + RunningTotal;
             }
             return RunningTotal;
