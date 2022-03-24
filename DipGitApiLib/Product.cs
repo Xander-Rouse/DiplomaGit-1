@@ -17,7 +17,12 @@ namespace DipGitApiLib {
         /// </summary>
         /// <returns></returns>
         public int GetTotalQtyProducts() {
-            throw new NotImplementedException();
+            int RunningTotal = 0
+                foreach (Product in ProductList) {
+                    RunningTotal = RunningTotal + Qty
+                }
+                return RunningTotal
+            ///throw new NotImplementedException();
         }
 
         /// <summary>
@@ -25,7 +30,12 @@ namespace DipGitApiLib {
         /// </summary>
         /// <returns></returns>
         public int GetTotalValueProducts() {
-            throw new NotImplementedException();
+            int RunningTotal = 0
+            foreach (Product in ProductList) {
+                RunningTotal = (Qty * Price) + RunningTotal
+            }
+            return RunningTotal
+            ///throw new NotImplementedException();
         }
     }
 }
