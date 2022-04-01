@@ -65,11 +65,9 @@ namespace DipGitApi.Controllers
             request.AddHeader("content-type", "application/json");
             var response = await _client.GetAsync(request);
 
-            // TODO set condition?
             if(response.Content.Contains("_id")) {
                 var test = JsonSerializer.Deserialize<Product[]>(response.Content);
                 return Ok(test);
-                // TODO cast as products object?
             }
 
             return NotFound();
@@ -82,10 +80,6 @@ namespace DipGitApi.Controllers
         /// <returns></returns>
         [HttpPost]
         public async Task<IActionResult> Add(Product newProduct) {
-            // var testNewProduct = new Product();
-            // testNewProduct.Name = "Big Donut";
-            // testNewProduct.Price = 10F;
-            // testNewProduct.Qty = 10;
 
             var newProductAltered = JsonSerializer.Serialize(newProduct);
 
@@ -171,22 +165,20 @@ namespace DipGitApi.Controllers
         [HttpGet("GetTotalQty")]
         public async Task<IActionResult> GetTotalQty() {
             // Read all products and create a Products object.  Use the products object to determine the total qty
-            // return all item as a Products object
             var request = new RestRequest();
             request.AddHeader("cache-control", "no-cache");
             request.AddHeader("x-apikey", _accessKey);
             request.AddHeader("content-type", "application/json");
             var response = await _client.GetAsync(request);
 
-            // TODO set condition?
             if(response.Content.Contains("_id")) {
+                products.ProductList = new List<Product>();
                 var test = JsonSerializer.Deserialize<Product[]>(response.Content);
                 foreach (var productItem in test)
                 {
                     products.ProductList.Add(productItem);
                 }
                 return Ok(products.GetTotalQtyProducts());
-                // TODO cast as products object?
             }
 
             return NotFound();
@@ -199,22 +191,20 @@ namespace DipGitApi.Controllers
         [HttpGet("GetTotalValue")]
         public async Task<IActionResult> GetTotalValue() {
             // Read all products and create a Products object.  Use the products object to determine the total value
-            // return all item as a Products object
             var request = new RestRequest();
             request.AddHeader("cache-control", "no-cache");
             request.AddHeader("x-apikey", _accessKey);
             request.AddHeader("content-type", "application/json");
             var response = await _client.GetAsync(request);
 
-            // TODO set condition?
             if(response.Content.Contains("_id")) {
+                products.ProductList = new List<Product>();
                 var test = JsonSerializer.Deserialize<Product[]>(response.Content);
                 foreach (var productItem in test)
                 {
                     products.ProductList.Add(productItem);
                 }
                 return Ok(products.GetTotalValueProducts());
-                // TODO cast as products object?
             }
 
             return NotFound();
